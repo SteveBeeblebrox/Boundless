@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "boundless",
+  "version": "${version}",
+  "name": "Boundless",
+  "description": "TODO",
+  "authors": [
+    "TODO"
+  ],
+  "contact": {
+    "website": "TODO",
+    "repo": "TODO"
+  },
+  "license": "MIT",
+  "icon": "assets/boundless/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      "io.github.sianabeeblebrox.boundless.client.BoundlessClient"
+    ],
+    "main": [
+      "io.github.sianabeeblebrox.boundless.Boundless"
+    ]
+  },
+  "mixins": [
+    "boundless.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.14.21",
+    "minecraft": "1.20-beta.6"
+  }
+}
