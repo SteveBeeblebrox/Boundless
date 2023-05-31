@@ -2,13 +2,14 @@ plugins {
     id 'fabric-loom' version '1.2-SNAPSHOT'
     id 'maven-publish'
     id 'groovy'
+    id 'com.github.gmazzo.buildconfig' version '4.0.4'
 }
 
 sourceCompatibility = JavaVersion.VERSION_20
 targetCompatibility = JavaVersion.VERSION_20
 
-archivesBaseName = project.archives_base_name
-version = project.mod_version
+archivesBaseName = project.id
+version = project.version
 group = project.maven_group
 
 dependencies {
@@ -24,16 +25,21 @@ dependencies {
 
 processResources {
     inputs.property "version", project.version
+    inputs.property "id", project.id
+    inputs.property "pkgroot", project.maven_group
 
     duplicatesStrategy = duplicatesStrategy.EXCLUDE
 
-    from(sourceSets.main.resources.srcDirs) {
-        include "fabric.mod.json"
-        expand "version": project.version
+    filesMatching('fabric.mod.json') {
+        expand "id": project.id, "version": project.version, "pkgroot": project.maven_group
     }
+}
 
-    from(sourceSets.main.resources.srcDirs) {
-        exclude "fabric.mod.json"
+buildConfig {
+    forClass(packageName = "${project.maven_group}.${project.id}", className = 'Config') {
+        useJavaOutput()
+        buildConfigField('String', 'ID', /"${project.id}"/)
+        buildConfigField('String', 'VERSION', /"${project.version}"/)
     }
 }
 
