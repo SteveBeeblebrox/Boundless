@@ -16,7 +16,7 @@
   "environment": "*",
   "entrypoints": {
     "client": [
-      "${pkgroot}.${id}.client.BoundlessClient"
+      "io.github.sianabeeblebrox.boundless.client.BoundlessClient"
     ],
     "main": [
       "${pkgroot}.${id}.Boundless"

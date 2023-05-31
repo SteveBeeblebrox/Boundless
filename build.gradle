@@ -2,6 +2,7 @@ plugins {
     id 'fabric-loom' version '1.2-SNAPSHOT'
     id 'maven-publish'
     id 'groovy'
+    id 'java'
     id 'com.github.gmazzo.buildconfig' version '4.0.4'
 }
 
@@ -43,9 +44,20 @@ buildConfig {
     }
 }
 
+
+
 compileGroovy {
     configure(groovyOptions) {
         configurationScript = file("$rootDir/config.groovy")
+        fileExtensions = ['sgroovy', 'groovy']
+    }
+}
+
+sourceSets {
+    main {
+        groovy {
+            filter.includes.add('**/*.sgroovy')
+        }
     }
 }
 

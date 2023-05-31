@@ -1,4 +1,9 @@
 withConfig(configuration) {
-    ast(groovy.transform.CompileStatic)
-    ast(groovy.util.logging.Log4j2)
+    source(extension: 'sgroovy') {
+        ast(groovy.transform.CompileStatic)
+    }
+
+    source(classValidator: { classNode -> !classNode.isInterface() } ) {
+        ast(groovy.util.logging.Log4j2, visibilityId: 'Log4j2')
+    }
 }
