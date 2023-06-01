@@ -3,6 +3,7 @@ plugins {
     id 'maven-publish'
     id 'groovy'
     id 'java'
+    id "org.jetbrains.kotlin.jvm" version "1.8.21"
     id 'com.github.gmazzo.buildconfig' version '4.0.4'
 }
 
