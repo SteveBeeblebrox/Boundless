@@ -37,7 +37,7 @@ processResources {
 }
 
 buildConfig {
-    forClass(packageName = "${project.maven_group}.${project.id}", className = 'Config') {
+    forClass(packageName = "${project.maven_group}.${project.id}", className = 'BuildData') {
         useJavaOutput()
         buildConfigField('String', 'ID', /"${project.id}"/)
         buildConfigField('String', 'VERSION', /"${project.version}"/)

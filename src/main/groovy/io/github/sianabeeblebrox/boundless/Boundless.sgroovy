@@ -1,12 +1,11 @@
 package io.github.sianabeeblebrox.boundless
 
 import io.github.sianabeeblebrox.boundless.meta.Entrypoint
-import io.github.sianabeeblebrox.boundless.util.*
 import net.fabricmc.api.ModInitializer
 
 @Entrypoint
 class Boundless implements ModInitializer {
-    static final String VERSION = Config.VERSION, ID = Config.ID
+    static final String VERSION = BuildData.VERSION, ID = BuildData.ID
     @Override
     void onInitialize() {
         log.info("Boundless Loading v${VERSION}")

@@ -1,4 +1,7 @@
 import static org.codehaus.groovy.control.customizers.builder.CompilerCustomizationBuilder.*
+import groovy.transform.SourceURI;
+import java.nio.file.Paths;
+
 withConfig(configuration) {
     source(extension: 'sgroovy') {
         ast(groovy.transform.CompileStatic)
@@ -8,6 +11,8 @@ withConfig(configuration) {
         ast(groovy.util.logging.Log4j2, visibilityId: 'Log4j2')
     }
 
-    System.setProperty("compileGroovy.project_dir", new File(new URI(getClass().protectionDomain.codeSource.location.path)).parent)
-    System.setProperty("compileGroovy.target_dir", configuration.getTargetDirectory().toString())
+    @SourceURI
+    URI scriptSourceUri
+
+    System.setProperty("gradle.rootDir", Paths.get(scriptSourceUri).parent.toString())
 }
